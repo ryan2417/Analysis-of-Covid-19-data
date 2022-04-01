@@ -1,1 +1,2 @@
 # Analysis-of-Covid-19-data
+This is the repo for project 2 of class p8160. The project applied optimization algorithms to fit Richard growth model to the confirmed cases, deaths and hospitalizations of Covid-19 in NYC and compared the resulted models between pandemic waves and boroughs. 
