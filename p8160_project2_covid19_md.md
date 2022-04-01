@@ -328,7 +328,7 @@ comparison in the death section of the report.
 ![](p8160_project2_covid19_md_files/figure-gfm/overview-1.png)<!-- -->
 
 ![](p8160_project2_covid19_md_files/figure-gfm/result1-1.png)<!-- -->
-<table>
+<table class="table table-striped table-hover table table-striped table-hover" style="margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Estimates of Parameters for Cumulative Case
 </caption>
@@ -753,7 +753,7 @@ Staten Island
 
 ![](p8160_project2_covid19_md_files/figure-gfm/plot-1.png)<!-- -->
 
-<table>
+<table class="table table-striped table-hover table table-striped table-hover" style="margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Estimates of Parameters for Cumulative Death Counts
 </caption>
@@ -1301,7 +1301,7 @@ Staten Island
 ![](p8160_project2_covid19_md_files/figure-gfm/hospital-1.png)<!-- -->
 
 ![](p8160_project2_covid19_md_files/figure-gfm/result3%20-1.png)<!-- -->
-<table>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Estimates of Parameters for Cumulative Hospitalization
 </caption>
@@ -2318,13 +2318,12 @@ rbind(case_theta, case_theta_bx, case_theta_bk, case_theta_mn, case_theta_qn, ca
   select(-r) %>% 
   pivot_wider(values_from = a:t0, names_from = wave) %>% 
   relocate(boro, ends_with("alpha"), ends_with("beta"), ends_with("delta"), ends_with("omicron")) %>% 
-  kbl(align = "c",booktabs = TRUE, col.names = labels_1,
-      digits = c(0, rep(c(0,3,5,0),4)),linesep = c("\\hline", "", "", "",
-""), centering = T,
+  kbl(align = "c",, col.names = labels_1,
+      digits = c(0, rep(c(0,3,5,0),4)),centering = T,
 caption = " Estimates of Parameters for Cumulative Case") %>% 
   row_spec(0,bold=TRUE) %>% 
   add_header_above(c(" " = 1, "alpha" = 4, "beta" = 4,"delta" = 4,"omicron" = 4), bold = TRUE) %>%
-  column_spec(1, bold = TRUE, border_right = TRUE, color = "black")
+  column_spec(1, bold = TRUE, border_right = TRUE, color = "black")%>% kable_styling(c("striped", "hover"),full_width = F)
 ```
 
 ## Death
@@ -3026,12 +3025,11 @@ rbind(death_theta, theta_dat) %>%
     names_from = cb_col,
     values_from = value
   ) %>% 
-  kbl(align = "c",booktabs = TRUE, col.names = labels_1,
-      digits = c(0, rep(c(0,3,5,0),4)),linesep = c("\\hline", "", "", "",
-""), centering = T, caption = "Estimates of Parameters for Cumulative Death Counts") %>% 
+  kbl(align = "c",, col.names = labels_1,
+      digits = c(0, rep(c(0,3,5,0),4)),caption = "Estimates of Parameters for Cumulative Death Counts") %>% 
   row_spec(0,bold=TRUE) %>% 
   add_header_above(c(" " = 1, "alpha" = 4, "beta" = 4,"delta" = 4,"omicron" = 4), bold = TRUE) %>%
-  column_spec(1, bold = TRUE, border_right = TRUE, color = "black")
+  column_spec(1, bold = TRUE, border_right = TRUE, color = "black")%>% kable_styling(c("striped", "hover"), full_width = F)
 
 
 fatality_rate_dat = as_tibble(data.frame(
@@ -3044,7 +3042,7 @@ fatality_rate_dat = as_tibble(data.frame(
   pivot_wider(names_from = waves,
               values_from = max_fatality_rate)
 
-kable(fatality_rate_dat, caption = "Maximum Case Fatality Rate", booktabs = TRUE) %>% 
+kable(fatality_rate_dat, caption = "Maximum Case Fatality Rate", ) %>% 
   kable_paper() %>%
     add_header_above(c(" ", "Case Fatality Rate" = 4))
 ```
@@ -3328,12 +3326,11 @@ rbind(hospitalized_theta, hospitalized_theta_bx, hospitalized_theta_bk, hospital
   select(-r) %>% 
   pivot_wider(values_from = a:t0, names_from = wave) %>% 
   relocate(boro, ends_with("alpha"), ends_with("beta"), ends_with("delta"), ends_with("omicron")) %>% 
-  kbl(align = "c",booktabs = TRUE, col.names = labels_1,
-      digits = c(0, rep(c(0,3,5,0),4)),linesep = c("\\hline", "", "", "",
-""), centering = T,caption = "Estimates of Parameters for Cumulative Hospitalization") %>% 
+  kable(align = "c", col.names = labels_1,
+      digits = c(0, rep(c(0,3,5,0),4)),centering = T,caption = "Estimates of Parameters for Cumulative Hospitalization") %>% 
   row_spec(0,bold=TRUE) %>% 
   add_header_above(c(" " = 1, "alpha" = 4, "beta" = 4,"delta" = 4,"omicron" = 4), bold = TRUE) %>%
-  column_spec(1, bold = TRUE, border_right = TRUE, color = "black")
+  column_spec(1, bold = TRUE, border_right = TRUE, color = "black") %>% kable_styling(c("striped", "hover"))
 
 Borough = c("alpha", "beta", "delta", "omicron")
 NYC = c("0.2382", "0.0902", "0.0615", "0.0323")
@@ -3344,7 +3341,7 @@ Queens = c("0.2471", "0.0905","0.0708", "0.0275")
 Staten_Island = c("0.1625", "0.0731","0.0592", "0.0275")
 
 as.data.frame(rbind(NYC,Bronx, Brooklyn, Manhattan, Queens, Staten_Island))%>% 
-  knitr::kable(col.names = Borough,booktabs = TRUE,centering = T,
+  knitr::kable(col.names = Borough,centering = T,
                caption = "Maximum Case Hospitalization Rate") %>% 
   kable_paper()
 ```

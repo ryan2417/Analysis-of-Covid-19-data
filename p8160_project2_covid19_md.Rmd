@@ -2,7 +2,7 @@
 title: "Analysis of Cumulative COVID-19 Cases,Hospitalizations, and Deaths in NYC"
 date: "04/01/2022"
 output: 
-  html_document
+  github_document
 always_allow_html: true
 ---
 *Xiao Ma(xm2276), Yida Wang(yw3774), Ruiqi Yan(ry2417), Hao Zheng(hz2770), Peilin Zhou(pz2281)*
